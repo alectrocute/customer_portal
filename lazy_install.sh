@@ -12,7 +12,6 @@ checksum () {
 	if [ "$remote" = "$local_file" ]
 	then
 	        echo "Security check passed! Continuing with installation..."
-		break
 	else
 	        echo "Security check failed. Please contact support."
 	        exit
