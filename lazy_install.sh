@@ -6,6 +6,16 @@
 # lazy install script for sonar's customer portal
 # meant to be piped to bash as securely as possible
 
+logo () {
+echo -e "\e[34m"
+echo -e "   ___  ___  _ __   __ _ _ __ "
+echo -e "  / __|/ _ \| '_ \ / _` | '__|"
+echo -e "  \__ \ (_) | | | | (_| | |   "
+echo -e "  |___/\___/|_| |_|\__,_|_|   "
+echo -e "\e[0m"
+echo -e ""
+}
+                        
 checksum () {
 	echo -e "\e[1mPerforming script integrity test...\e[0m"
 	remote_location="https://raw.githubusercontent.com/alectrocute/customer_portal/master/lazy_install.sh"
@@ -47,6 +57,7 @@ install_portal () {
 }
 
 reset
+logo
 echo -e "This script will install the latest Sonar Customer Portal onto your server."
 echo -e "To begin, confirm that you'd like to start the installation process."
 echo -e ""
