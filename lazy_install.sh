@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# lazy install script for sonar's customer portal
+# meant to be piped to bash as securely as possible
+
 checksum () {
 	echo "Performing script integrity test..."
 	remote_location="https://raw.githubusercontent.com/alectrocute/customer_portal/master/lazy_install.sh"
