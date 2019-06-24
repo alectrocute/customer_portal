@@ -12,6 +12,7 @@ checksum () {
 	if [ "$remote" = "$local_file" ]
 	then
 	        echo "Security check passed! Continuing with installation..."
+		break
 	else
 	        echo "Security check failed. Please contact support."
 	        exit
@@ -21,8 +22,8 @@ checksum () {
 install_portal () {
 	checksum
 	echo -e "Installation will now begin."
-	sudo rm -r /etc/sonar_software
-	sudo mkdir /etc/sonar_software
+	rm -r /etc/sonar_software
+	mkdir /etc/sonar_software
 	cd /etc/sonar_software || echo "File system error!"; exit
 	echo -e "Updating packages & dependencies."
 	sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y install git unzip
@@ -32,7 +33,7 @@ install_portal () {
 	echo -e "Running installation executable..."
 	sudo ./install.sh | tee customerportal-install.log
 	echo -e "Installation complete! Would you like to review the install logs?"
-	read "Type 'yes' to view, or hit enter to decline: " view_logs
+	read -n 1 -p "Type 'y' to view, or 'n' to decline: " view_logs < /dev/tty
 	if [ "$view_logs" = 'yes' ]
 	then
 	        cat customerportal-install.log
@@ -51,6 +52,7 @@ if [[ $confirm = 'y' ]]
 then
         clear
         install_portal
+	exit
 else
         echo -e "Installation cancelled."
         exit
