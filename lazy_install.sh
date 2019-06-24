@@ -22,8 +22,8 @@ checksum () {
 install_portal () {
 	checksum
 	echo -e "Installation will now begin."
-	rm -r /etc/sonar_software
-	mkdir /etc/sonar_software
+	rm -r /etc/sonar_software  || continue
+	mkdir /etc/sonar_software || continue
 	cd /etc/sonar_software || echo "File system error!"; exit
 	echo -e "Updating packages & dependencies."
 	sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y install git unzip
