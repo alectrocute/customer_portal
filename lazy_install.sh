@@ -34,7 +34,7 @@ install_portal () {
 	sudo ./install.sh | tee customerportal-install.log
 	echo -e "Installation complete! Would you like to review the install logs?"
 	read "Type 'yes' to view, or hit enter to decline: " view_logs
-	if [ "$view_logs" = "yes" ]
+	if [ "$view_logs" = 'yes' ]
 	then
 	        cat customerportal-install.log
 	else
@@ -48,7 +48,7 @@ echo -e "To begin, confirm that you'd like to start the installation process."
 echo -e ""
 read -p "Type 'install' to begin: " confirm
 
-if [ "$confirm" = "install" ]
+if [ "$confirm" = 'install' ]
 then
         clear
         install_portal
