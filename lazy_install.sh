@@ -14,8 +14,6 @@ checksum () {
 	        echo "Security check passed! Continuing with installation..."
 	else
 	        echo "Security check failed. Please contact support."
-		rm -r ./install.sh
-		echo "Successfully deleted potentially malicious file from disk!"
 	        exit
 	fi
 }
