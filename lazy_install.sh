@@ -1,40 +1,44 @@
 #!/bin/bash
+# shellcheck disable=SC1090
 
+# lazy_install.sh
+# ubuntu, debian bash script
 # lazy install script for sonar's customer portal
 # meant to be piped to bash as securely as possible
 
 checksum () {
-	echo "Performing script integrity test..."
+	echo "\e[1mPerforming script integrity test...\e[0m"
 	remote_location="https://raw.githubusercontent.com/alectrocute/customer_portal/master/lazy_install.sh"
 	remote=$(curl -s $remote_location|sha1sum|cut -f 1 -d " ")
-	echo "Remote file URL:" $remote_location
-	echo "Remote file hash:" $remote
+	echo "Remote file URL:\e[4m" $remote_location
+	echo "\e[0mRemote file hash:\e[2m" $remote
 	local_file=$(cat ./hash.txt|cut -f 1 -d " ")
-	echo "This file's hash:" $local_file
+	echo "This file's hash:\e[2m" $local_file
 	sudo rm hash.txt
 	if [ "$remote" = "$local_file" ]
 	then
-	        echo "Security check passed! Continuing with installation..."
+	        echo "\e[32mSecurity check passed! Continuing with installation...\e[0m"
 	else
-	        echo "Security check failed. Please contact support."
+	        echo "\e[31mSecurity check failed. \e[0mPlease contact support."
 	        exit
 	fi
 }
 
 install_portal () {
 	checksum
-	echo -e "Installation will now begin."
+	echo -e "\e[1mInstallation will now begin.\e[0m"
 	mkdir /etc/sonar_software
 	cd /etc/sonar_software
-	echo -e "Updating packages & dependencies."
+	echo -e "\e[1mUpdating packages & dependencies.\e[0m"
 	sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y install git unzip
-	echo -e "Downloading latest repo from GitHub."
+	echo -e "\e[1mDownloading latest repo from GitHub.\e[0m"
 	git clone https://github.com/SonarSoftwareInc/customer_portal.git
 	cd customer_portal
-	echo -e "Running installation executable..."
+	echo -e "\e[1mRunning installation executable...\e[0m"
 	sudo ./install.sh | tee customerportal-install.log
-	echo -e "Installation complete! Would you like to review the install logs?"
-	read -n 1 -p "Type 'y' to view, or 'n' to decline: " view_logs < /dev/tty
+	echo -e "\e[32mInstallation complete! Would you like to review the install logs?\e[0m"
+	read -n 1 -p "Type 'y' to view, or 'n' to decline: \e[1m" view_logs < /dev/tty
+	echo -e "\e[0m"
 	if [ "$view_logs" = 'yes' ]
 	then
 	        cat customerportal-install.log
@@ -47,8 +51,9 @@ reset
 echo -e "This script will install the latest Sonar Customer Portal onto your server."
 echo -e "To begin, confirm that you'd like to start the installation process."
 echo -e ""
+read -n 1 -p "Type 'y' to begin, otherwise type 'n': \e[1m" confirm < /dev/tty
+echo -e "\e[0m"
 
-read -n 1 -p "Type 'y' to begin, otherwise type 'n': " confirm < /dev/tty
 if [[ $confirm = 'y' ]]
 then
         clear
