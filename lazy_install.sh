@@ -9,7 +9,7 @@ checksum () {
 	echo "Remote file hash:" $remote
 	local_file=$(sha1sum ./install.sh|cut -f 1 -d " ")
 	echo "This file's hash:" $local_file
-	if [[ $remote == $local_file ]]
+	if [[ $remote == $local_file ]];
 	then
 	        echo "Security check passed! Continuing with installation..."
 	else
@@ -35,7 +35,7 @@ install_portal () {
 	sudo ./install.sh | tee customerportal-install.log
 	echo -e "Installation complete! Would you like to review the install logs?"
 	read "Type 'yes' to view, or hit enter to decline: " view_logs
-	if [ $view_logs = "yes" ]
+	if [[ $view_logs = "yes" ]];
 	then
 	        cat customerportal-install.log
 	else
@@ -49,7 +49,7 @@ echo -e "To begin, confirm that you'd like to start the installation process."
 echo -e ""
 read -p "Type 'install' to begin: " confirm
 
-if [[ $confirm = "install" ]]
+if [[ $confirm = "install" ]];
 then
         clear
         install_portal
