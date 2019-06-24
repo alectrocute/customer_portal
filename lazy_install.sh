@@ -8,7 +8,7 @@ checksum () {
 	echo "Remote file hash:" $remote
 	local_file=$(cat ./hash.txt|cut -f 1 -d " ")
 	echo "This file's hash:" $local_file
-	rm -r ./hash.txt
+	sudo rm hash.txt
 	if [ "$remote" = "$local_file" ]
 	then
 	        echo "Security check passed! Continuing with installation..."
