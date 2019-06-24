@@ -37,8 +37,7 @@ install_portal () {
 	echo -e "\e[1mRunning installation executable...\e[0m"
 	sudo ./install.sh | tee customerportal-install.log
 	echo -e "\e[32mInstallation complete! Would you like to review the install logs?\e[0m"
-	read -n 1 -p "Type 'y' to view, or 'n' to decline: \e[1m" view_logs < /dev/tty
-	echo -e "\e[0m"
+	read -n 1 -p "Type 'y' to view, or 'n' to decline: " view_logs < /dev/tty
 	if [ "$view_logs" = 'yes' ]
 	then
 	        cat customerportal-install.log
@@ -51,8 +50,7 @@ reset
 echo -e "This script will install the latest Sonar Customer Portal onto your server."
 echo -e "To begin, confirm that you'd like to start the installation process."
 echo -e ""
-read -n 1 -p "Type 'y' to begin, otherwise type 'n': \e[1m" confirm < /dev/tty
-echo -e "\e[0m"
+read -n 1 -p "Type 'y' to begin, otherwise type 'n': " confirm < /dev/tty
 
 if [[ $confirm = 'y' ]]
 then
