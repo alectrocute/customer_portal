@@ -6,8 +6,9 @@ checksum () {
 	remote=$(curl -s $remote_location|sha1sum|cut -f 1 -d " ")
 	echo "Remote file URL:" $remote_location
 	echo "Remote file hash:" $remote
-	local_file=$(sha1sum ./install.sh|cut -f 1 -d " ")
+	local_file=$(cat ./hash.txt|cut -f 1 -d " ")
 	echo "This file's hash:" $local_file
+	rm -r ./hash.txt
 	if [ "$remote" = "$local_file" ]
 	then
 	        echo "Security check passed! Continuing with installation..."
