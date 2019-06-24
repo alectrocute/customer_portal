@@ -47,7 +47,7 @@ echo -e "This script will install the latest Sonar Customer Portal onto your ser
 echo -e "To begin, confirm that you'd like to start the installation process."
 echo -e ""
 
-read -n 1 -p "Type 'y' to begin, otherwise type 'n': " confirm
+read -n 1 -p "Type 'y' to begin, otherwise type 'n': " confirm < /dev/tty
 if [[ $confirm = 'y' ]]
 then
         clear
