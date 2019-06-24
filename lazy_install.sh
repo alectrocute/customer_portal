@@ -7,19 +7,19 @@
 # meant to be piped to bash as securely as possible
 
 checksum () {
-	echo "\e[1mPerforming script integrity test...\e[0m"
+	echo -e "\e[1mPerforming script integrity test...\e[0m"
 	remote_location="https://raw.githubusercontent.com/alectrocute/customer_portal/master/lazy_install.sh"
 	remote=$(curl -s $remote_location|sha1sum|cut -f 1 -d " ")
-	echo "Remote file URL:\e[4m" $remote_location
-	echo "\e[0mRemote file hash:\e[2m" $remote
+	echo -e "Remote file URL:\e[4m" $remote_location
+	echo -e "\e[0mRemote file hash:\e[2m" $remote
 	local_file=$(cat ./hash.txt|cut -f 1 -d " ")
-	echo "This file's hash:\e[2m" $local_file
+	echo -e "This file's hash:\e[2m" $local_file
 	sudo rm hash.txt
 	if [ "$remote" = "$local_file" ]
 	then
-	        echo "\e[32mSecurity check passed! Continuing with installation...\e[0m"
+	        echo -e "\e[32mSecurity check passed! Continuing with installation...\e[0m"
 	else
-	        echo "\e[31mSecurity check failed. \e[0mPlease contact support."
+	        echo -e "\e[31mSecurity check failed. \e[0mPlease contact support."
 	        exit
 	fi
 }
