@@ -6,7 +6,7 @@
 # lazy install script for sonar's customer portal
 # meant to be piped to bash as securely as possible
 
-logo () {
+splash_logo () {
 echo -e "\e[34m"
 printf "   ___  ___  _ __   __ _ _ __  "
 printf "  / __|/ _ \| '_ \ / _` | '__| "
@@ -57,7 +57,7 @@ install_portal () {
 }
 
 reset
-logo
+splash_logo
 echo -e "This script will install the latest Sonar Customer Portal onto your server."
 echo -e "To begin, confirm that you'd like to start the installation process."
 echo -e ""
