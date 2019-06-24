@@ -54,6 +54,5 @@ then
         install_portal
 	exit
 else
-        echo -e "Installation cancelled."
         exit
 fi
