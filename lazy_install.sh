@@ -3,7 +3,7 @@
 
 checksum () {
 	echo "Performing script integrity test..."
-	remote_location="https://portal.latest.alec.pw/install.sh"
+	remote_location="https://raw.githubusercontent.com/alectrocute/customer_portal/master/lazy_install.sh"
 	remote=$(curl -s $remote_location|sha1sum|cut -f 1 -d " ")
 	echo "Remote file URL:" $remote_location
 	echo "Remote file hash:" $remote
