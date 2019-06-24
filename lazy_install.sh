@@ -21,14 +21,13 @@ checksum () {
 install_portal () {
 	checksum
 	echo -e "Installation will now begin."
-	rm -r /etc/sonar_software  || continue
-	mkdir /etc/sonar_software || continue
-	cd /etc/sonar_software || echo "File system error!"; exit
+	mkdir /etc/sonar_software
+	cd /etc/sonar_software
 	echo -e "Updating packages & dependencies."
 	sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y install git unzip
 	echo -e "Downloading latest repo from GitHub."
 	git clone https://github.com/SonarSoftwareInc/customer_portal.git
-	cd customer_portal || echo "File system error!" && exit
+	cd customer_portal
 	echo -e "Running installation executable..."
 	sudo ./install.sh | tee customerportal-install.log
 	echo -e "Installation complete! Would you like to review the install logs?"
