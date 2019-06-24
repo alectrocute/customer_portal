@@ -49,7 +49,7 @@ echo -e "To begin, confirm that you'd like to start the installation process."
 echo -e ""
 read -p "Type 'install' to begin: " confirm
 
-if [ $confirm = "install" ]
+if [[ $confirm = "install" ]]
 then
         clear
         install_portal
